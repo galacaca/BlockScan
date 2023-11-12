@@ -144,10 +144,12 @@ function App() {
     <Router>
       <div className="App">
         <div className="left-panel">
-        <h1>ETH-Explorer</h1>
+        
           <h1>Block Number: {blockNumber}</h1>
           <h2>Timestamp: {new Date(timestamp * 1000).toLocaleString()}</h2>
-          <div className="address-search">
+          
+        </div>
+        <div className="address-search">
             <input
               type="text"
               placeholder="Enter an address"
@@ -156,15 +158,6 @@ function App() {
               className="search-input"
             />
             <button onClick={handleAddressSearch}>Search Address</button>
-        </div>
-
-        <div className="top-container">
-          
-        <div className="left-container"> 
-
-       
-
-            
             {balance && <div className="balance-display">Account ETH Balance: {balance}</div>} 
 
   {/* Token Balances Table */}
@@ -203,9 +196,6 @@ function App() {
 
 
           </div>
-
-          </div>
-          <div className="right-container"> 
           {/* Recent Transactions Table */}
 {recentTransactions.length > 0 && (
   <div>
@@ -228,7 +218,7 @@ function App() {
             <td>{parseInt(tx.blockNum, 16)}</td>
             <td>{tx.from}</td>
             <td>{tx.to}</td>
-            <td>{tx.value}</td>
+            <td>{tx.value ? formatEther(tx.value) : 'N/A'}</td>
             <td>{tx.tokenId}</td>
             <td>{tx.asset}</td>
             <td>{tx.hash}</td>
@@ -240,9 +230,9 @@ function App() {
 )}        
 
 
-</div>
-</div>
-<div className="bottom-container">
+
+
+
 
 
         {/* NFT Sales Table in its own div */}
@@ -295,9 +285,6 @@ function App() {
             </Route>
           </Switch>
         </div>
-
-</div>
-
       </div>
     </Router>
   );
